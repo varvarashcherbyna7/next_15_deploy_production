@@ -19,7 +19,7 @@ const config: Config = {
           DEFAULT: "#0038A8",
         },
         secondary: "#FFDD33",
-        primaryBackground: "#DAE3E3",
+        primaryBackground: "#DAE2E2",
         black: {
           "100": "#333333",
           "200": "#141413",

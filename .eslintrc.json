@@ -3,7 +3,7 @@
   "extends": [
     "airbnb-base", // Airbnb's base JS style guide
     "next/core-web-vitals", // Next.js core web vitals plugin to avoid build warnings
-    "plugin:prettier/recommended" // Integrates Prettier with ESLint
+    "plugin:prettier/recommended" // Integrates Prettier with ESLint,
   ],
   "rules": {
     "prettier/prettier": [
