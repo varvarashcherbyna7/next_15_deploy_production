@@ -1,7 +1,6 @@
-import Link from 'next/link';
-import React from 'react'
-import Image from 'next/image';
 import { auth, signIn, signOut } from '@/auth';
+import Image from 'next/image';
+import Link from 'next/link';
 import { ServerActionButton } from './buttons/ServerActionButton';
 
 export const NavBar = async () => {
