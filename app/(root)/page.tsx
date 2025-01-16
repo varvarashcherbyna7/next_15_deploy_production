@@ -1,20 +1,8 @@
 import { SearchForm } from "@/components/SearchForm";
-import SturtupCard from "@/components/SturtupCard";
+import { SturtupCard, SturtupTypeCard } from "@/components/SturtupCard";
+import { client } from "@/sanity/lib/client";
+import { STARTUP_QUERY } from "@/sanity/lib/queries";
 
-
-export interface SturtupCardType {
-  _createAt: Date,
-  view: number,
-  _id: number,
-  image: string,
-  title: string,
-  description: string,
-  category: string,
-  author: {
-    _id: number,
-    name: string
-  }
-}
 
 export default async function Home({ searchParams }: {
   searchParams: Promise<{ query?: string }>;
@@ -22,18 +10,7 @@ export default async function Home({ searchParams }: {
 
   const query = (await searchParams).query;
 
-  const posts: SturtupCardType[] = [
-    {
-      _createAt: new Date(),
-      view: 55,
-      author: { _id: 1, name: "John Doe" },
-      _id: 1,
-      description: 'This is a description',
-      image: 'https://placehold.co/48x48',
-      category: 'Robots',
-      title: 'We Robots'
-    }
-  ]
+  const posts: SturtupTypeCard[] = await client.fetch(STARTUP_QUERY);
 
   return (
     <>
@@ -47,23 +24,20 @@ export default async function Home({ searchParams }: {
         </p>
         <SearchForm query={query} />
       </section>
-
       <section className="section_container">
         <p className="text-30-semibold">
           {query ? `Search results for "${query}"` : "All Startups"}
         </p>
-
         <ul className="mt-7 card_grid">
           {
             posts?.length > 0 ? (
-              posts.map((post: SturtupCardType) => <SturtupCard key={post._id} post={post} />)
+              posts.map((post: SturtupTypeCard) => <SturtupCard key={post._id} post={post} />)
             ) : (
               <li>
                 <p>No startups found</p>
               </li>
             )
           }
-
         </ul>
       </section>
     </>
